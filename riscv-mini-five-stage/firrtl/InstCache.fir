@@ -1,0 +1,20 @@
+circuit InstCache : @[instcache.py:19]
+  module InstCache : @[instcache.py:19]
+    input clock : Clock @[rawmodule.py:100]
+    input reset : UInt<1> @[rawmodule.py:101]
+    output io : {flip addr : UInt<32>, inst : UInt<32>} @[instcache.py:12]
+
+    cmem cache : UInt<8>[1024] @[instcache.py:22]
+    read mport _T_7 = cache[io.addr], clock @[memory.py:52]
+    node _T_8 = add(io.addr, UInt<1>(1)) @[instcache.py:23]
+    read mport _T_9 = cache[_T_8], clock @[memory.py:52]
+    node _T_10 = add(io.addr, UInt<2>(2)) @[instcache.py:24]
+    read mport _T_11 = cache[_T_10], clock @[memory.py:52]
+    node _T_12 = add(io.addr, UInt<2>(3)) @[instcache.py:24]
+    read mport _T_13 = cache[_T_12], clock @[memory.py:52]
+    node _T_14 = cat(_T_7, _T_9) @[instcache.py:24]
+    node _T_15 = cat(_T_14, _T_11) @[instcache.py:24]
+    node _T_16 = cat(_T_15, _T_13) @[instcache.py:24]
+    io.inst <= _T_16 @[instcache.py:24]
+
+

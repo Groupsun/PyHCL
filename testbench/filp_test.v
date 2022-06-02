@@ -1,0 +1,16 @@
+module Test( // @[filp_test.py:30:filp_test.fir@2.2]
+  input         clock, // @[rawmodule.py:100:filp_test.fir@3.4]
+  input         reset, // @[rawmodule.py:101:filp_test.fir@4.4]
+  output [31:0] io_bio_aio_a, // @[filp_test.py:22:filp_test.fir@5.4]
+  output [31:0] io_bio_aio_b, // @[filp_test.py:22:filp_test.fir@5.4]
+  input  [31:0] io_bio_aio_x, // @[filp_test.py:22:filp_test.fir@5.4]
+  output [31:0] io_bio_c, // @[filp_test.py:22:filp_test.fir@5.4]
+  input  [31:0] io_bio_y, // @[filp_test.py:22:filp_test.fir@5.4]
+  output [31:0] io_d, // @[filp_test.py:22:filp_test.fir@5.4]
+  input  [31:0] io_z // @[filp_test.py:22:filp_test.fir@5.4]
+);
+  assign io_bio_aio_a = io_bio_aio_x; // @[filp_test.py:33:filp_test.fir@7.4]
+  assign io_bio_aio_b = io_bio_aio_x; // @[filp_test.py:34:filp_test.fir@8.4]
+  assign io_bio_c = io_bio_y; // @[filp_test.py:35:filp_test.fir@9.4]
+  assign io_d = io_z; // @[filp_test.py:36:filp_test.fir@10.4]
+endmodule
