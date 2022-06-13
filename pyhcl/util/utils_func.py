@@ -29,3 +29,30 @@ def search_def(iexp, stack):
         stack.extend(temp_stack[::-1])
     except Exception:
         print(iexp.ref_arg.emit())
+
+
+def orR(exp):
+    """Reduce OR"""
+    width = exp._data._ir_exp.type.width
+    tmp @= exp[width-1]
+    for w in range (width-2, -1):
+        tmp @= tmp | exp[w]
+    return tmp
+
+
+def andR(exp):
+    """Reduce OR"""
+    width = exp._data._ir_exp.type.width
+    tmp @= exp[width-1]
+    for w in range (width-2, -1):
+        tmp @= tmp & exp[w]
+    return tmp
+
+
+def xorR(exp):
+    """Reduce OR"""
+    width = exp._data._ir_exp.type.width
+    tmp @= exp[width-1]
+    for w in range (width-2, -1):
+        tmp @= tmp ^ exp[w]
+    return tmp

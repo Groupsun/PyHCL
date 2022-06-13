@@ -18,6 +18,8 @@ class Adder(Module):
 
         self.sum = Wire(UInt(9))
 
+        test = U(1)
+
         self.sum @= self.io.a + self.io.b + self.io.cin
         self.io.s @= self.sum[7:0]
         self.io.cout @= self.sum[8]

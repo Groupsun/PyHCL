@@ -8,7 +8,7 @@ Author: SunnyChen
 import sys
 
 from pyhcl.core import rawdata
-from pyhcl.core.define import Define
+from pyhcl.core.define import U, Define
 from pyhcl.core.resources import HasInfo, InstanceId
 from pyhcl.firrtl import ir
 from pyhcl.util import utils_func
@@ -89,3 +89,24 @@ def MuxLookUp(key: Define, default: Define, dictionary: dict):
     def_node = Define(raw_data)
 
     return def_node
+
+def Mux1Hot(key: Define, default: Define, dictionary: dict):
+    """Ont hot MUX, format:
+
+    0: value,
+    1: value,
+    ...
+    """
+    true_dict = {}
+    max_width = 0
+
+    # Max width
+    for k in dictionary.keys():
+        if k > max_width: max_width = k
+
+    for k, v in dictionary.items():
+        true_dict[U(1 << k, max_width)] = v
+
+    true_dict[...] = U(0)
+
+    return MuxLookUp(key, default, true_dict)
