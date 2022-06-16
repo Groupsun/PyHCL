@@ -191,3 +191,11 @@ class Module(HasInfo):
         #     i.clk = clk._data._ir_exp
         # module._define_node.stats.extend(local_sytax_tree)
         # local_sytax_tree.clear()
+
+    def listInit(self, module, name, num):
+        l = []
+        for i in range(num):
+            mname = name + str(i)
+            self.__dict__[mname] = module().gen()
+            l.append(self.__dict__[mname])
+        return l
